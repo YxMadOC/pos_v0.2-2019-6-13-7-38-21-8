@@ -40,10 +40,10 @@ function findRelatedGoods(scanResult){
 function createReceipt(relatedGoods){
   let receiptStr = title + '\n';
   let total = 0;
-  for(let i = 0; i < relatedGoods.length; i++){
-      receiptStr += '名称：' + relatedGoods[i].name + '，数量：' + relatedGoods[i].count + relatedGoods[i].unit+ '，单价：' + relatedGoods[i].price.toFixed(2) + '(元)，小计：' + (relatedGoods[i].price * relatedGoods[i].count).toFixed(2) + '(元)\n';
-      total += relatedGoods[i].price * relatedGoods[i].count;
-  }
+  relatedGoods.forEach(item => {
+    receiptStr += '名称：' + item.name + '，数量：' + item.count + item.unit+ '，单价：' + item.price.toFixed(2) + '(元)，小计：' + (item.price * item.count).toFixed(2) + '(元)\n';
+    total += item.price * item.count;
+  })
   receiptStr += upDelimeter + '\n' + priceText + total.toFixed(2) + '(元)\n' + downDelimeter ;
   return receiptStr;
 }
